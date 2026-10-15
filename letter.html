@@ -1,0 +1,1154 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Something for You ✨</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Dancing+Script:wght@600;700&display=swap');
+
+:root {
+  --pink: #ff5ba7;
+  --purple: #a78bfa;
+  --gold: #f4d49a;
+  --white: #fff8fc;
+  --muted: #c3b5ce;
+  --glass: rgba(255,255,255,.055);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--white);
+  background: #07060c;
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+button, input { font: inherit; }
+button { -webkit-tap-highlight-color: transparent; }
+
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(135,48,140,.19), transparent 40%),
+    radial-gradient(ellipse at 85% 75%, rgba(55,56,160,.19), transparent 40%),
+    #07060c;
+}
+
+.orb {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: .24;
+  animation: drift 15s ease-in-out infinite alternate;
+}
+
+.orb.one { background: #b12880; top: -150px; left: -100px; }
+.orb.two { background: #4935b7; bottom: -170px; right: -100px; animation-delay: -7s; }
+
+@keyframes drift {
+  from { transform: translate(0,0) scale(1); }
+  to { transform: translate(70px,50px) scale(1.2); }
+}
+
+#particles {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.particle {
+  position: absolute;
+  bottom: -30px;
+  opacity: 0;
+  animation: floatUp linear infinite;
+  filter: drop-shadow(0 0 8px rgba(255,91,167,.4));
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  12% { opacity: .7; }
+  85% { opacity: .4; }
+  100% { transform: translateY(-110vh) rotate(35deg); opacity: 0; }
+}
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  padding: 18px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, rgba(7,6,12,.82), transparent);
+  pointer-events: none;
+}
+
+.brand {
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #e9d6eb;
+}
+.brand span { color: var(--pink); }
+
+.progress-wrap {
+  width: 110px;
+  height: 3px;
+  border-radius: 20px;
+  background: #ffffff18;
+  overflow: hidden;
+}
+
+#progress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg,var(--pink),var(--purple),var(--gold));
+  transition: width .6s ease;
+}
+
+.scene {
+  display: none;
+  min-height: 100svh;
+  padding: 105px 20px 65px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.scene.active {
+  display: flex;
+  animation: sceneIn .8s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes sceneIn {
+  from { opacity: 0; transform: translateY(20px) scale(.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.content {
+  width: min(100%, 760px);
+  margin: auto;
+}
+
+.eyebrow {
+  color: var(--gold);
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
+  line-height: 1.17;
+  margin: 0 0 20px;
+}
+
+h1 { font-size: clamp(36px, 7vw, 68px); }
+h2 { font-size: clamp(30px, 5vw, 47px); }
+h1 em, h2 em { color: var(--pink); font-weight: 500; }
+
+p {
+  color: var(--muted);
+  line-height: 1.85;
+  font-size: 15px;
+}
+
+.script {
+  font-family: 'Dancing Script', cursive;
+  color: var(--pink);
+  font-size: clamp(27px, 5vw, 40px);
+}
+
+.glass {
+  background: var(--glass);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 24px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 20px 80px #00000026;
+}
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  padding: 14px 25px;
+  margin: 8px 5px;
+  border: 1px solid #ffffff28;
+  border-radius: 50px;
+  color: white;
+  background: #ffffff0b;
+  cursor: pointer;
+  transition: transform .25s, box-shadow .25s, background .25s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px #ff5ba72a;
+  background: #ffffff15;
+}
+
+.btn.primary {
+  border: none;
+  color: #1a0714;
+  font-weight: 700;
+  background: linear-gradient(110deg,#ff83bd,#f4c3e1 55%,#f4d49a);
+  box-shadow: 0 0 30px #ff5ba72b;
+}
+
+.btn.primary:hover { box-shadow: 0 0 42px #ff5ba75c; }
+
+.btn:focus-visible, input:focus-visible, img:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+.heart {
+  display: inline-block;
+  color: var(--pink);
+  animation: heartbeat 1.6s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%,100% { transform: scale(1); }
+  15% { transform: scale(1.18); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.12); }
+}
+
+.envelope-wrap {
+  width: 190px;
+  height: 140px;
+  margin: 30px auto 32px;
+  position: relative;
+  perspective: 800px;
+  animation: hover 3s ease-in-out infinite;
+}
+
+@keyframes hover {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.envelope {
+  position: absolute;
+  inset: 25px 0 0;
+  height: 110px;
+  background: linear-gradient(145deg,#d94892,#8c347d);
+  border-radius: 7px;
+  box-shadow: 0 15px 45px #b12d7650;
+}
+
+.envelope:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(32deg,transparent 49%,#f48ac0 50%) left bottom/50% 100% no-repeat,
+              linear-gradient(-32deg,transparent 49%,#e86aab 50%) right bottom/50% 100% no-repeat;
+  border-radius: 0 0 7px 7px;
+}
+
+.envelope:after {
+  content: "♥";
+  position: absolute;
+  top: 33px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff1fa;
+  font-size: 25px;
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 95px solid transparent;
+  border-right: 95px solid transparent;
+  border-top: 72px solid #ff9acb;
+  transform-origin: top;
+  filter: drop-shadow(0 4px 3px #0002);
+}
+
+.letter-card {
+  max-width: 610px;
+  padding: clamp(25px,5vw,48px);
+  margin: 25px auto;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.letter-card:before {
+  content: "✦";
+  position: absolute;
+  right: 25px;
+  top: 15px;
+  color: #f4d49a66;
+  font-size: 42px;
+}
+
+.letter-card p { color: #e4d8e8; }
+
+.letter-sign {
+  margin-top: 25px;
+  text-align: right;
+  font-family: 'Dancing Script', cursive;
+  font-size: 29px;
+  color: var(--pink);
+}
+
+.field {
+  display: block;
+  width: min(100%, 340px);
+  margin: 18px auto;
+  padding: 15px 17px;
+  color: white;
+  text-align: center;
+  border-radius: 13px;
+  border: 1px solid #ffffff25;
+  background: #ffffff09;
+  outline: none;
+}
+
+.field::placeholder { color: #a89ab1; }
+.field:focus { border-color: #ff5ba7a0; }
+
+.hint {
+  font-size: 12px;
+  letter-spacing: .4px;
+  color: #a99ab3;
+}
+
+.error {
+  color: #ff9fc9;
+  min-height: 24px;
+  font-size: 13px;
+}
+
+.flower-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 15px;
+  margin: 30px auto;
+  max-width: 590px;
+}
+
+.flower-option {
+  padding: 12px;
+  text-align: left;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.flower-option:hover {
+  transform: translateY(-5px);
+  border-color: #ff83bd80;
+  box-shadow: 0 15px 45px #ff5ba71b;
+}
+
+.flower-option img {
+  display: block;
+  width: 100%;
+  height: 145px;
+  object-fit: cover;
+  border-radius: 15px;
+  background: linear-gradient(135deg,#32213b,#17121f);
+}
+
+.flower-option strong {
+  display: block;
+  padding: 13px 4px 3px;
+  font-size: 14px;
+}
+
+.flower-option small {
+  padding-left: 4px;
+  color: var(--muted);
+}
+
+/* NEXT BUTTON BELOW THE FLOWER OPTIONS */
+.flower-next {
+  margin: 8px auto 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.bouquet-frame {
+  width: min(100%,440px);
+  height: 390px;
+  margin: 25px auto;
+  padding: 10px;
+  border: 1px solid #f4d49a55;
+  border-radius: 25px;
+  background: linear-gradient(140deg,#ffffff13,#ffffff03);
+  box-shadow: 0 0 50px #f4d49a0c;
+  overflow: hidden;
+}
+
+.bouquet-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 17px;
+  animation: photoReveal .8s ease both;
+}
+
+@keyframes photoReveal {
+  from { opacity: 0; transform: scale(1.07); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.profile-card {
+  max-width: 590px;
+  margin: 28px auto;
+  padding: 28px;
+  text-align: left;
+}
+
+.profile-line {
+  padding: 15px 0;
+  border-bottom: 1px solid #ffffff12;
+}
+
+.profile-line:last-child { border-bottom: 0; }
+.profile-line strong { color: #f4d49a; }
+.profile-line span { color: #e6d9ec; }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 15px;
+  margin: 30px auto;
+}
+
+.memory {
+  padding: 9px;
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity .8s ease, transform .8s ease;
+  text-align: left;
+  overflow: hidden;
+}
+
+.memory.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.memory:nth-child(even) { margin-top: 25px; }
+
+.memory img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 15px;
+  background: linear-gradient(140deg,#2b1d35,#17121e);
+  transition: transform .5s;
+}
+
+.memory:hover img { transform: scale(1.035); }
+
+.memory figcaption {
+  padding: 12px 6px 7px;
+  font-size: 12px;
+  color: #d9c9e1;
+}
+
+.final-heart {
+  font-size: 80px;
+  filter: drop-shadow(0 0 25px #ff5ba755);
+  animation: heartbeat 1.5s infinite;
+  margin: 20px 0;
+}
+
+.family-frame {
+  position: relative;
+  max-width: 640px;
+  margin: 30px auto;
+  padding: 12px;
+  border-radius: 23px;
+  border: 1px solid #f4d49a;
+  background: linear-gradient(135deg,#f4d49a,#87622e,#f4d49a,#4b351b);
+  box-shadow: 0 0 45px #f4d49a22, 0 20px 80px #0008;
+}
+
+.family-inner {
+  background: #0b080c;
+  border-radius: 14px;
+  padding: 9px;
+}
+
+.family-inner img {
+  display: block;
+  width: 100%;
+  max-height: 470px;
+  object-fit: contain;
+  border-radius: 9px;
+}
+
+.family-caption {
+  padding: 20px 8px 12px;
+  font-family: 'Playfair Display',serif;
+  color: var(--gold);
+  font-size: 22px;
+}
+
+.hidden { display: none !important; }
+
+/* UNIVERSAL FULL-SCREEN IMAGE VIEWER */
+.photo-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 24px;
+  background: rgba(5,4,9,.98);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  overflow-y: auto;
+  animation: sceneIn .4s ease both;
+}
+
+.photo-viewer img {
+  display: block;
+  max-width: 95vw;
+  max-height: 76vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 0 45px #f4d49a25;
+  animation: photoReveal .5s ease both;
+}
+
+.photo-title {
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(20px,4vw,30px);
+  text-align: center;
+}
+
+.photo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+body.viewer-open { overflow: hidden; }
+
+img.zoomable {
+  cursor: zoom-in;
+}
+
+img.zoomable:hover {
+  filter: brightness(1.06);
+}
+
+footer {
+  padding: 20px;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #82758d;
+}
+
+@media (max-width: 520px) {
+  .topbar { padding: 17px 20px; }
+  .brand { letter-spacing: 2px; font-size: 10px; }
+  .progress-wrap { width: 75px; }
+  .scene { padding: 90px 16px 45px; }
+  .flower-grid { gap: 10px; }
+  .flower-option { padding: 8px; }
+  .flower-option img { height: 120px; }
+  .bouquet-frame { height: 310px; }
+  .memory img { height: 165px; }
+  .profile-card { padding: 20px; }
+  .btn { padding: 13px 19px; }
+  .photo-viewer { padding: 16px; }
+  .photo-viewer img { max-width: 94vw; max-height: 68vh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="background">
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+</div>
+<div id="particles"></div>
+
+<header class="topbar">
+  <div class="brand">A LITTLE <span>♡</span> SOMETHING</div>
+  <div class="progress-wrap"><div id="progress"></div></div>
+</header>
+
+<!-- SCENE 1: OPENING -->
+<section class="scene active" id="s1">
+  <div class="content">
+    <div class="eyebrow">This is my first ever Website Project ✦</div>
+    <h1>Made for, <em>you.</em></h1>
+    <p>I've made something special for you.<br>Take a little moment and open it. ♡</p>
+    <div class="envelope-wrap">
+      <div class="envelope"></div>
+      <div class="envelope-flap"></div>
+    </div>
+    <div class="script">A little surprise awaits...</div>
+    <button class="btn primary" onclick="goTo(2)">Open your letter ✨</button>
+  </div>
+</section>
+
+<!-- SCENE 2: APOLOGY LETTER -->
+<section class="scene" id="s2">
+  <div class="content">
+    <div class="eyebrow">Few words for you.</div>
+    <h2>Dear <em>"Friend",</em></h2>
+    <article class="letter-card glass">
+      <p>Hello Chhotu Don,</p>
+      <p>First of all, I want you to know that your friendship genuinely means a lot to me. Sometimes I don't express things properly, and sometimes I make mistakes without realizing how they feel to someone else.</p>
+      <p>If I've hurt you, upset you, or made you feel unappreciated, I'm truly sorry. I never want a misunderstanding or a silly mistake to make you doubt how much I value our friendship.</p>
+      <p>I can't promise I'll always be perfect, but I can promise to listen, learn, and try to do better. You deserve honesty, kindness, and a friend who genuinely cares.</p>
+      <p>This little website is just my way of reminding you that our memories matter to me, and so to you. 💗</p>
+      <div class="letter-sign">With sorry & a sincere apology ♡</div>
+    </article>
+    <button class="btn primary" onclick="goTo(3)">There's more for you →</button>
+  </div>
+</section>
+
+<!-- SCENE 3: DATE GATE -->
+<section class="scene" id="s3">
+  <div class="content">
+    <div class="eyebrow">A little Privacy check ✦</div>
+    <h2>Privacy <em>question...</em></h2>
+    <p>Apni DOB daalo kyuki meri to kya hi pta hogi tumhe.</p>
+    <div class="glass" style="padding:28px 20px;max-width:440px;margin:25px auto;">
+      <div style="font-size:38px">🎂</div>
+      <input class="field" id="dob" type="date" aria-label="Special date">
+      <div class="error" id="dobError" aria-live="polite"></div>
+      <button class="btn primary" onclick="verifyDOB()">Unlock the surprise ♡</button>
+      <p class="hint">Kuch aacha hi h aage daro mat</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 4: FLOWER SELECTION -->
+<section class="scene" id="s4">
+  <div class="content">
+    <div class="eyebrow">Choose your little bouquet</div>
+    <h2>If I could give you <em>flowers...</em></h2>
+    <p>Which one would you choose? Tap your favourite.</p>
+
+    <div class="flower-grid">
+      <button class="flower-option glass" onclick="chooseFlower('red')" style="color:white">
+        <img class="zoomable" src="images/red-roses.jpg" alt="Red roses" onerror="this.style.display='none'">
+        <strong>❤️ Red Roses</strong><small>For love & appreciation</small>
+      </button>
+
+      <button class="flower-option glass" onclick="chooseFlower('pink')" style="color:white">
+        <img class="zoomable" src="images/pink-roses.jpg" alt="Pink roses" onerror="this.style.display='none'">
+        <strong>🌸 Pink Roses</strong><small>For care & sweetness</small>
+      </button>
+
+      <button class="flower-option glass" onclick="chooseFlower('tulips')" style="color:white">
+        <img class="zoomable" src="images/tulips.jpg" alt="Tulips" onerror="this.style.display='none'">
+        <strong>🌷 Tulips</strong><small>For fresh beginnings</small>
+      </button>
+
+      <button class="flower-option glass" onclick="chooseFlower('sunflowers')" style="color:white">
+        <img class="zoomable" src="images/sunflowers.jpg" alt="Sunflowers" onerror="this.style.display='none'">
+        <strong>🌻 Sunflowers</strong><small>For happiness & sunshine</small>
+      </button>
+    </div>
+
+    <div class="hint">Choose the flowers that feels like you ✨</div>
+
+    <!-- NEW: Always visible below the flower cards -->
+    <div class="flower-next">
+      <button class="btn primary" onclick="goTo(5)">
+        Next Page →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 5: BOUQUET REVEAL -->
+<section class="scene" id="s5">
+  <div class="content">
+    <div class="eyebrow">Picked especially for you</div>
+    <h2>A little bouquet, <em>just because.</em></h2>
+    <p id="flowerMessage">Some flowers for someone who deserves a smile.</p>
+    <div class="bouquet-frame">
+      <img class="zoomable" id="bouquetImage" src="images/red-roses.jpg" alt="Your chosen flowers">
+    </div>
+    <p>May your days be filled with little reasons to smile. 🌷</p>
+    <button class="btn primary" onclick="goTo(6)">One more little thing →</button>
+    <button class="btn" onclick="goTo(4)">Choose different flowers</button>
+  </div>
+</section>
+
+<!-- SCENE 6: NAME CHECK -->
+<section class="scene" id="s6">
+  <div class="content">
+    <div class="eyebrow">Ek or Privacy prashn aapke saamne ♡</div>
+    <h2>Let's see if you know <em>me or not!</em></h2>
+    <p>Type my first name to continue. Mera hi name dalna pdega vo bhi correct. </p>
+    <div class="glass" style="max-width:430px;margin:25px auto;padding:30px 20px;">
+      <div style="font-size:38px">🔐</div>
+      <input class="field" id="friendName" type="text" placeholder="Enter your name" autocomplete="off">
+      <div class="error" id="nameError" aria-live="polite"></div>
+      <button class="btn primary" onclick="verifyName()">Are you sure! ♡</button>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 7: FRIEND PROFILE -->
+<section class="scene" id="s7">
+  <div class="content">
+    <div class="eyebrow">Good job name to shi dala tumne</div>
+    <h2>Something <em>About You.</em></h2>
+    <p>A little appreciation page for you. 💗</p>
+    <div class="profile-card glass">
+      <div class="profile-line"><strong>♡ Nickname</strong><br><span id="nickname">Your favourite nickname</span></div>
+      <div class="profile-line"><strong>✦ Hobbies</strong><br><span id="hobbies">All the things you love doing</span></div>
+      <div class="profile-line"><strong> Hates the most</strong><br><span id="hates_the_most">Obviously me</span></div>
+      <div class="profile-line"><strong>🌷 Favourites</strong><br><span id="favourites">Your favourite little things</span></div>
+      <div class="profile-line"><strong>💌 A message for you</strong><br><span id="profileMessage">You deserve all the good things life has to offer.</span></div>
+      <div class="profile-line"><strong>♾️ Our friendship</strong><br><span id="friendship">A collection of memories I'll always appreciate.</span></div>
+    </div>
+    <button class="btn primary" onclick="goTo(8)">Let's revisit your memories ✨</button>
+  </div>
+</section>
+
+<!-- SCENE 8: MEMORY GALLERY -->
+<section class="scene" id="s8">
+  <div class="content">
+    <div class="eyebrow">Little moments, big memories</div>
+    <h2>Your little corner of <em>memories.</em></h2>
+    <p>Some moments deserve to be kept a little closer. ♡</p>
+    <div class="gallery">
+      <figure class="memory glass">
+        <img class="zoomable" src="images/photo1.jpg" alt="Memory one" loading="lazy" onerror="this.style.opacity='.15'">
+        <figcaption>One for the memory book ✨</figcaption>
+      </figure>
+      <figure class="memory glass">
+        <img class="zoomable" src="images/photo2.jpg" alt="Memory two" loading="lazy" onerror="this.style.opacity='.15'">
+        <figcaption>A moment worth keeping ♡</figcaption>
+      </figure>
+      <figure class="memory glass">
+        <img class="zoomable" src="images/photo3.jpg" alt="Memory three" loading="lazy" onerror="this.style.opacity='.15'">
+        <figcaption>Little things, big smiles</figcaption>
+      </figure>
+      <figure class="memory glass">
+        <img class="zoomable" src="images/photo4.jpg" alt="Memory four" loading="lazy" onerror="this.style.opacity='.15'">
+        <figcaption>Another page in your story</figcaption>
+      </figure>
+      <figure class="memory glass">
+        <img class="zoomable" src="images/photo5.jpg" alt="Memory five" loading="lazy" onerror="this.style.opacity='.15'">
+        <figcaption>Good times, always remembered</figcaption>
+      </figure>
+      <figure class="memory glass">
+        <img class="zoomable" src="images/photo6.jpg" alt="Memory six" loading="lazy" onerror="this.style.opacity='.15'">
+        <figcaption>Here's to more memories ✦</figcaption>
+      </figure>
+    </div>
+    <p>Fikar not yh saari pictures and details safe h mere pass sirf tum hi dekh skti ho inhe.</p>
+    <button class="btn primary" onclick="goTo(9)">One final surprise 🎁</button>
+  </div>
+</section>
+
+<!-- SCENE 9: SENTIMENTAL ENDING -->
+<section class="scene" id="s9">
+  <div class="content">
+    <div class="eyebrow">One last thing jisko banane m bohot time lagya mujhe</div>
+    <div class="final-heart">💗</div>
+    <h1>This is the most beautiful<em> and the final surprise.</em></h1>
+    <p style="max-width:540px;margin:20px auto">
+      No website could ever fit every memory, every laugh, or every
+      little moment that makes a friendship meaningful.
+      But I hope this one reminds you that you're appreciated.
+    </p>
+    <p class="script">Iske baad to I think tum maaff kr hi dogi mujhe.</p>
+    <button class="btn primary" onclick="goTo(10)">The final surprise ✨</button>
+  </div>
+</section>
+
+<!-- SCENE 10: FAMILY PHOTO SURPRISE -->
+<section class="scene" id="s10">
+  <div class="content">
+    <div class="eyebrow">A little surprise to keep</div>
+    <h2>Some things are <em>priceless.</em></h2>
+    <p>There's one last memory I saved for you.</p>
+    <div id="familyIntro">
+      <div style="font-size:55px;margin:28px 0">🎁</div>
+      <button class="btn primary" onclick="revealFamily()">Reveal your surprise ♡</button>
+    </div>
+    <div id="familyReveal" class="hidden">
+      <div class="family-frame">
+        <div class="family-inner">
+          <img
+            class="zoomable"
+            id="familyPhoto"
+            src="images/family-surprise.jpg"
+            alt="A special family memory"
+            title="Click to view and download this photo"
+            onerror="this.alt='Add your family-surprise.jpg photo to the images folder to show your surprise.';this.style.minHeight='150px';this.style.background='#17121e';"
+          >
+          <div class="family-caption">The people and memories that makes your life beautiful ♡</div>
+        </div>
+      </div>
+      <p style="max-width:500px;margin:20px auto">
+        Some memories are more than just photographs.
+        They're little pieces of life that we get to keep forever.
+        I hope this one brings a smile to your face. 💛
+      </p>
+      <div class="script">Made with care, just for you.</div>
+      <button class="btn" onclick="replay()">↻ Experience it again</button>
+    </div>
+  </div>
+</section>
+
+<!-- UNIVERSAL FULL-SCREEN IMAGE VIEWER -->
+<div id="photoViewer" class="photo-viewer hidden"
+     role="dialog" aria-modal="true"
+     aria-label="Photo viewer">
+
+  <div class="photo-title" id="viewerTitle">A memory to keep forever ♡</div>
+
+  <img id="fullPhoto" src="" alt="Selected photo">
+
+  <div class="photo-actions">
+    <a id="downloadPhoto" class="btn primary"
+       href="#" download="memory-photo.jpg"
+       style="text-decoration:none">
+      Download Photo ↓
+    </a>
+    <button class="btn" type="button" onclick="closePhotoViewer()">
+      ← Back to Surprise
+    </button>
+  </div>
+
+  <p class="hint">A little memory, saved with love ✨</p>
+</div>
+
+<footer>MADE BY IYKYK</footer>
+
+<script>
+/* PERSONALIZE THESE DETAILS */
+
+const CORRECT_DOB = "2008-08-30";
+const CORRECT_NAME = "Tapendra";
+
+const PROFILE = {
+  nickname: "Filhal to, Chhotu Don",
+  hobbies: "Sleeping and eating momos(fast foods)",
+  hates_the_most: "obviously me",
+  favourites: "Tum hi jaano",
+  message: "Ab to snap se unblock kr hi do mujhe, please ek baar to deserve krta hu m ab",
+
+};
+
+/* NAVIGATION */
+
+let currentScene = 1;
+let selectedFlower = "red";
+
+function goTo(number) {
+  const current = document.getElementById("s" + currentScene);
+  const next = document.getElementById("s" + number);
+  if (!next) return;
+
+  if (current) current.classList.remove("active");
+  next.classList.add("active");
+
+  currentScene = number;
+  document.getElementById("progress").style.width =
+    ((number - 1) / 9 * 100) + "%";
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  if (number === 7) loadProfile();
+  if (number === 8) prepareGallery();
+}
+
+/* DATE CHECK */
+
+function verifyDOB() {
+  const entered = document.getElementById("dob").value;
+  const error = document.getElementById("dobError");
+
+  if (!entered) {
+    error.textContent = "Choose a date first ♡";
+    return;
+  }
+
+  if (entered === CORRECT_DOB) {
+    error.textContent = "";
+    goTo(4);
+  } else {
+    error.textContent = "Not quite! Try the special date again.";
+  }
+}
+
+/* FLOWER CHOICES */
+
+const FLOWERS = {
+  red: {
+    image: "images/red-roses.jpg",
+    message: "Red roses for a friendship I truly appreciate. ❤️"
+  },
+  pink: {
+    image: "images/pink-roses.jpg",
+    message: "Pink roses to remind you how much kindness matters. 🌸"
+  },
+  tulips: {
+    image: "images/tulips.jpg",
+    message: "Tulips for fresh beginnings and brighter days. 🌷"
+  },
+  sunflowers: {
+    image: "images/sunflowers.jpg",
+    message: "Sunflowers for the sunshine you bring into life. 🌻"
+  }
+};
+
+function chooseFlower(type) {
+  selectedFlower = type;
+  const choice = FLOWERS[type];
+  const image = document.getElementById("bouquetImage");
+
+  image.style.opacity = "0";
+
+  setTimeout(() => {
+    image.src = choice.image;
+    image.alt = type + " bouquet";
+    image.style.opacity = "1";
+    image.style.animation = "none";
+    void image.offsetWidth;
+    image.style.animation = "photoReveal .8s ease both";
+  }, 180);
+
+  document.getElementById("flowerMessage").textContent = choice.message;
+
+  /* Selecting a flower still reveals the bouquet page. */
+  goTo(5);
+}
+
+/* NAME CHECK */
+
+function verifyName() {
+  const entered = document.getElementById("friendName").value.trim();
+  const error = document.getElementById("nameError");
+
+  if (!entered) {
+    error.textContent = "Enter the name first ♡";
+    return;
+  }
+
+  if (entered.toLowerCase() === CORRECT_NAME.trim().toLowerCase()) {
+    error.textContent = "";
+    goTo(7);
+  } else {
+    error.textContent = "Hmm, that doesn't match. Try again!";
+  }
+}
+
+/* FRIEND PROFILE */
+
+function loadProfile() {
+  document.getElementById("nickname").textContent = PROFILE.nickname;
+  document.getElementById("hobbies").textContent = PROFILE.hobbies;
+  document.getElementById("favourites").textContent = PROFILE.favourites;
+  document.getElementById("profileMessage").textContent = PROFILE.message;
+  document.getElementById("friendship").textContent = PROFILE.friendship;
+  document.getElementById("hates the most").textContent = PROFILE.hates_the_most;
+}
+
+/* MEMORY GALLERY REVEALS */
+
+let galleryObserver;
+
+function prepareGallery() {
+  const memories = document.querySelectorAll(".memory");
+
+  memories.forEach((memory, index) => {
+    memory.classList.remove("visible");
+    memory.style.transitionDelay = (index * 100) + "ms";
+  });
+
+  if (!("IntersectionObserver" in window)) {
+    memories.forEach(memory => memory.classList.add("visible"));
+    return;
+  }
+
+  if (galleryObserver) galleryObserver.disconnect();
+
+  galleryObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        galleryObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  memories.forEach(memory => galleryObserver.observe(memory));
+}
+
+/* FINAL FAMILY PHOTO */
+
+function revealFamily() {
+  document.getElementById("familyIntro").classList.add("hidden");
+  document.getElementById("familyReveal").classList.remove("hidden");
+  document.getElementById("progress").style.width = "100%";
+}
+
+/* UNIVERSAL PHOTO VIEWER: FLOWERS, BOUQUETS, GALLERY, FAMILY */
+
+const photoViewer = document.getElementById("photoViewer");
+const fullPhoto = document.getElementById("fullPhoto");
+const downloadPhoto = document.getElementById("downloadPhoto");
+const viewerTitle = document.getElementById("viewerTitle");
+
+function openPhotoViewer(img) {
+  if (!img || !img.src || !img.complete || img.naturalWidth === 0) {
+    return;
+  }
+
+  const imageURL = img.currentSrc || img.src;
+  const imagePath = img.getAttribute("src") || imageURL;
+  const imageName = img.alt || "Memory photo";
+
+  fullPhoto.src = imageURL;
+  fullPhoto.alt = imageName;
+  viewerTitle.textContent = imageName + " ♡";
+
+  downloadPhoto.href = imagePath;
+
+  let filename = imagePath.split("/").pop().split("?")[0];
+
+  try {
+    filename = decodeURIComponent(filename);
+  } catch (error) {}
+
+  downloadPhoto.download = filename || "memory-photo.jpg";
+
+  photoViewer.classList.remove("hidden");
+  document.body.classList.add("viewer-open");
+  document.addEventListener("keydown", handlePhotoEscape);
+}
+
+function closePhotoViewer() {
+  photoViewer.classList.add("hidden");
+  document.body.classList.remove("viewer-open");
+  document.removeEventListener("keydown", handlePhotoEscape);
+}
+
+function handlePhotoEscape(event) {
+  if (event.key === "Escape") closePhotoViewer();
+}
+
+/* Click outside the photo viewer to close it. */
+photoViewer.addEventListener("click", function(event) {
+  if (event.target === photoViewer) closePhotoViewer();
+});
+
+/* Make images open in the full-screen viewer without triggering their parent button. */
+document.querySelectorAll(
+  ".flower-option img, #bouquetImage, .memory img, #familyPhoto"
+).forEach(img => {
+  img.classList.add("zoomable");
+  img.setAttribute("tabindex", "0");
+  img.setAttribute("role", "button");
+  img.setAttribute("title", "Click to view and download this image");
+
+  img.addEventListener("click", function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    openPhotoViewer(img);
+  });
+
+  img.addEventListener("keydown", function(event) {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      event.stopPropagation();
+      openPhotoViewer(img);
+    }
+  });
+});
+
+/* FLOATING PARTICLES */
+
+function createParticles() {
+  const container = document.getElementById("particles");
+  const symbols = ["♡", "✦", "·", "♥"];
+
+  for (let i = 0; i < 28; i++) {
+    const particle = document.createElement("span");
+    particle.className = "particle";
+    particle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    particle.style.left = Math.random() * 100 + "%";
+    particle.style.fontSize = (10 + Math.random() * 15) + "px";
+    particle.style.animationDuration = (9 + Math.random() * 13) + "s";
+    particle.style.animationDelay = (-Math.random() * 20) + "s";
+    particle.style.color = Math.random() > .5 ? "#ff83bd" : "#d8c2ff";
+    container.appendChild(particle);
+  }
+}
+
+/* REPLAY */
+
+function replay() {
+  closePhotoViewer();
+
+  document.getElementById("familyIntro").classList.remove("hidden");
+  document.getElementById("familyReveal").classList.add("hidden");
+
+  document.getElementById("dob").value = "";
+  document.getElementById("friendName").value = "";
+  document.getElementById("dobError").textContent = "";
+  document.getElementById("nameError").textContent = "";
+
+  goTo(1);
+}
+
+createParticles();
+</script>
+</body>
+</html>
